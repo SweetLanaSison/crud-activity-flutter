@@ -46,7 +46,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                   icon: Icon(Icons.delete),
                   onPressed: () async {
                     await StudentService().deleteStudent(widget.student!.id);
-                    Navigator.pop(context);
+                    Navigator.pop(context, true);
                   },
                 ),
               ]

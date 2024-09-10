@@ -51,6 +51,8 @@ class StudentService{
   Future<void> deleteStudent(String id) async {
     final response = await http.delete(Uri.parse('$baseUrl/$id'));
     if (response.statusCode != 200) {
+      print('Failed to delete student. Status code: ${response.statusCode}');
+      print('Response body: ${response.body}');
       throw Exception('Failed to delete student');
     }
   }
