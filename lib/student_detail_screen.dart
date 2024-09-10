@@ -159,7 +159,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                         ),
                       );
                     }
-                    Navigator.pop(context);
+                    Navigator.pop(context, true); //true meaning edited
                   }
                 },
                 child: Text(widget.student == null ? 'Add' : 'Update'),

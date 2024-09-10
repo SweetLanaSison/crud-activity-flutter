@@ -43,13 +43,20 @@ class _StudentListScreenState extends State<StudentListScreen> {
                 return ListTile(
                   title: Text('${student.firstName} ${student.lastName}'),
                   subtitle: Text('${student.course} - ${student.year}'),
-                  onTap: () {
-                    Navigator.push(
+                  onTap: () async {
+                    final result = await Navigator.push(
                       context,
-                     MaterialPageRoute(
+                      MaterialPageRoute(
                         builder: (context) => StudentDetailScreen(student: student),
                       ),
                     );
+
+                    // Check if result not null, meaning this is edited
+                    if (result == true) {
+                      setState(() {
+                        futureStudents = StudentService().getStudents(); // Refresh the list
+                      });
+                    }
                   },
                 );
               },
@@ -58,13 +65,19 @@ class _StudentListScreenState extends State<StudentListScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final result = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => StudentDetailScreen(),
             ),
           );
+
+          if (result == true) { // A student was changed (add or edit)
+            setState(() {
+              futureStudents = StudentService().getStudents(); // Refresh the list
+            });
+          }
         },
         child: Icon(Icons.add),
       ),
