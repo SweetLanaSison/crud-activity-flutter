@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'student_model.dart';
 
 class StudentService{
-  static const String baseUrl = 'https://crud-activity-node.onrender.com';
+  static const String baseUrl = 'https://crud-activity-node.onrender.com/api/students';
 
   Future<List<Student>> getStudents() async {
     final response = await http.get(Uri.parse(baseUrl));
@@ -23,13 +23,14 @@ class StudentService{
 
   Future<Student> createStudent(Student student) async {
     final response = await http.post(Uri.parse(baseUrl),
-    headers: {'Conten-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json'},
     body: json.encode(student.toJson()),
     );
     if(response.statusCode == 201){
       return Student.fromJson(json.decode(response.body));
     }
     else{
+      print('Failed to create student: ${response.body}'); // Print the server response
       throw Exception('failed to create student');
     }
   }

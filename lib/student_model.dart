@@ -28,7 +28,7 @@ class Student{
 
   Map<String, dynamic> toJson(){
     return{
-      'firsName': firstName,
+      'firstName': firstName,
       'lastName': lastName,
       'course': course,
       'year': year,
