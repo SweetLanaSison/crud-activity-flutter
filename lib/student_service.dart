@@ -4,12 +4,12 @@ import 'package:http/http.dart' as http;
 import 'student_model.dart';
 
 class StudentService{
-  static const String baseUrl = 'https://crud-activity-node.onrender.com/api/students';
+  static const String baseUrl = 'http://192.168.254.154:5000/api/students'; //'https://crud-activity-node.onrender.com/api/students'; 'http://10.0.2.2:5000'; 'http://192.168.x.x:5000';
 
   Future<List<Student>> getStudents() async {
     final response = await http.get(Uri.parse(baseUrl));
     if(response.statusCode == 200){
-      List jsonResponse = json.decode(response.body);
+      List jsonResponse = json.decode(response.body); 
       //convert list of JSON objects (from api) to list of dart objects (Student)
       //(student) represent each json object //Student.fromJson(student) is a factory 
       //constructor that creates a Student object from the JSON data. //it takes each 
