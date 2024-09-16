@@ -85,7 +85,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
                 },
               ),
               DropdownButtonFormField<String>(
-                value: course, //curently selected value from dropdown, by default
+                value: course, //currently selected value from dropdown, by default
                 decoration: InputDecoration(labelText: 'Course'), //text when not selected yet
                 items: ['Science', 'Commerce', 'Arts'].map((String value){ //iterate thru value in list and converts to ...
                   return DropdownMenuItem<String>( //representing each item
